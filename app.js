@@ -12,11 +12,15 @@ app.use(bodyParser.json());
 var port = process.env.NODEJS_TCP_PORT || 3000;
 
 // GET http://localhost:3000/api/v1/
-app.get('/api/v1/',function(req,res){
+app.get('/', (req,res) => {
     res.json({
-        message:"Hello,world"
+        message:"Hello,world",
     });
 });
+
+// add /api route for routes/api.js
+var apiRouter = require('./routes/api');
+app.use('/api', apiRouter);
 
 // サーバ起動
 app.listen(port);
